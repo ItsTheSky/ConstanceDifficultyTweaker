@@ -1,0 +1,97 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>ConstanceDifficultyTweaker</RootNamespace>
+        <AssemblyName>ConstanceDifficultyTweaker</AssemblyName>
+        <LangVersion>latest</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <!-- Paths -->
+    <PropertyGroup>
+        <ConstancePath>C:\Program Files (x86)\Steam\steamapps\common\Constance</ConstancePath>
+        <BepInExPath>$(ConstancePath)\BepInEx</BepInExPath>
+        <ManagedPath>$(ConstancePath)\CONSTANCE_Data\Managed</ManagedPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- BepInEx -->
+        <Reference Include="BepInEx">
+            <HintPath>$(BepInExPath)\core\BepInEx.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>$(BepInExPath)\core\0Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <!-- Unity -->
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(ManagedPath)\UnityEngine.CoreModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>$(ManagedPath)\UnityEngine.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(ManagedPath)\UnityEngine.UI.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Unity.InputSystem">
+            <HintPath>$(ManagedPath)\Unity.InputSystem.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Unity.Localization">
+            <HintPath>$(ManagedPath)\Unity.Localization.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.ImageConversionModule">
+            <HintPath>$(ManagedPath)\UnityEngine.ImageConversionModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="TMPro">
+            <HintPath>$(ManagedPath)\Unity.TextMeshPro.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="QFSW.QC">
+            <HintPath>$(ManagedPath)\QFSW.QC.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <!-- Constance -->
+        <Reference Include="Constance">
+            <HintPath>$(ManagedPath)\Leo.Scripts.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Constance.Core">
+            <HintPath>$(ManagedPath)\Constance.Core.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Constance.Ui">
+            <HintPath>$(ManagedPath)\Constance.Ui.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Constance.Characters.Player">
+            <HintPath>$(ManagedPath)\Constance.Characters.Player.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Constance.Entities">
+            <HintPath>$(ManagedPath)\Constance.Entities.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Constance.Creatures.Carnival">
+            <HintPath>$(ManagedPath)\Constance.Creatures.Carnival.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Constance.World">
+            <HintPath>$(ManagedPath)\Constance.World.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(BepInExPath)\plugins\ConstanceDifficultyTweaker\ConstanceDifficultyTweaker.dll" />
+    </Target>
+</Project>
